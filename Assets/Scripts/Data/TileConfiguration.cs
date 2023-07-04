@@ -25,6 +25,7 @@ namespace DefaultNamespace
                 tileTypesRuntime[i] = new TileConfig();
                 tileTypesRuntime[i].type = tileTypes[i].type;
                 tileTypesRuntime[i].edges = new TileEdges();
+                tileTypesRuntime[i].tile = tileTypes[i].tile;
                 tileTypesRuntime[i].edges.left = tileTypes[i].edges.left;
                 tileTypesRuntime[i].edges.right = tileTypes[i].edges.right;
                 tileTypesRuntime[i].edges.top = tileTypes[i].edges.top;

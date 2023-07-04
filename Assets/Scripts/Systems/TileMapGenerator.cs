@@ -16,7 +16,7 @@ public class TileMapGenerator : MonoBehaviour
     
     public TileConfiguration tileConfiguration;
     
-    public void CreateTileMap(TileConfig[] lastBlockRow)
+    public TileConfig[][] CreateTileMap(TileConfig[] lastBlockRow)
     {
         //initialize tilemap[][] with map width and height
         var tileMap = new TileConfig[MAP_HEIGHT][];
@@ -34,16 +34,7 @@ public class TileMapGenerator : MonoBehaviour
             }
         }
 
-        // log the tilemap
-        for (int i = 0; i < MAP_HEIGHT; i++)
-        {
-            var line = "";
-            for (int j = 0; j < MAP_WIDTH; j++)
-            {
-                line += tileMap[i][j].type + " ";
-            }
-            Debug.Log(line);
-        }
+        return tileMap;
     }
     
     private void SampleOneLine(TileConfig[] lastBlockRow, TileConfig[] sampleLine)
@@ -52,7 +43,7 @@ public class TileMapGenerator : MonoBehaviour
         {
             y = i;
             var bottom = lastBlockRow[i].type;
-            var left = i == 0 ? TileType.Floor : sampleLine[i - 1].type;
+            var left = i == 0 ? TileType.Void : sampleLine[i - 1].type;
             var right = i == MAP_WIDTH - 1 ? TileType.Floor : sampleLine[i + 1].type;
             var top = TileType.Empty;
             sampleLine[i] = GetRandomCompatibleTile(left, right, top, bottom);
@@ -73,6 +64,10 @@ public class TileMapGenerator : MonoBehaviour
     private TileConfig GetRandomTileFromTileEdges(TileEdges tileEdges)
     {
         var matchingConfigs = GetAllMatchingTileTypes(tileEdges);
+        if(matchingConfigs.Length == 0)
+        {
+            throw new ApplicationException($"No matching tile at position: x->{x} y->{y} types found for edges: {tileEdges.left}, {tileEdges.right}, {tileEdges.top}, {tileEdges.bottom}");
+        }
         return matchingConfigs[Random.Range(0, matchingConfigs.Length)];
     }
     
@@ -84,7 +79,7 @@ public class TileMapGenerator : MonoBehaviour
         foreach (var config in tileConfigs)
         {
             //skip empty tiles because they match everything
-            if (config.type == TileType.Empty) continue;
+            if (config.type == TileType.Empty || config.type == TileType.Void) continue;
             
             bool match = true;
             if (config.edges.left != tileEdges.left && tileEdges.left != EdgeType.Any)
