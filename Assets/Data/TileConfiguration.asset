@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7522558ca6ef4b49b20af7af33dd4f0d, type: 3}
+  m_Name: TileConfiguration
+  m_EditorClassIdentifier: 
+  tileTypes:
+  - type: 4
+    tile: {fileID: 11400000, guid: 316e613f2197143bfb24ace3f29d002c, type: 2}
+    edges:
+      left: 2
+      right: 3
+      top: 5
+      bottom: 5
+  - type: 5
+    tile: {fileID: 11400000, guid: 63887568e0dd94f9d932c0b596c77749, type: 2}
+    edges:
+      left: 3
+      right: 2
+      top: 4
+      bottom: 4
+  - type: 7
+    tile: {fileID: 11400000, guid: 6d24a1d4c874a49de825afaff68ba9c6, type: 2}
+    edges:
+      left: 7
+      right: 7
+      top: 3
+      bottom: 2
+  - type: 6
+    tile: {fileID: 11400000, guid: b15ec732c3a9144048860a199890e36f, type: 2}
+    edges:
+      left: 6
+      right: 6
+      top: 2
+      bottom: 3
+  - type: 8
+    tile: {fileID: 11400000, guid: f420eedb3c1a14db3a349ea40ff3d92b, type: 2}
+    edges:
+      left: 2
+      right: 6
+      top: 2
+      bottom: 5
+  - type: 9
+    tile: {fileID: 11400000, guid: 263e17c342bd44f6b9e36ffb53907adb, type: 2}
+    edges:
+      left: 6
+      right: 2
+      top: 2
+      bottom: 4
+  - type: 10
+    tile: {fileID: 11400000, guid: 5cb40c5f4cba441448de3bfd423eebcd, type: 2}
+    edges:
+      left: 2
+      right: 7
+      top: 5
+      bottom: 2
+  - type: 11
+    tile: {fileID: 11400000, guid: 7ad5eff8398e34505a0a8e92047e1d89, type: 2}
+    edges:
+      left: 7
+      right: 2
+      top: 4
+      bottom: 2
+  - type: 0
+    tile: {fileID: 11400000, guid: 7ad5eff8398e34505a0a8e92047e1d89, type: 2}
+    edges:
+      left: 0
+      right: 0
+      top: 0
+      bottom: 0
+  - type: 2
+    tile: {fileID: 11400000, guid: 92b627275225c42f6b031d1096251a81, type: 2}
+    edges:
+      left: 2
+      right: 2
+      top: 2
+      bottom: 2
+  - type: 1
+    tile: {fileID: 11400000, guid: 7ad5eff8398e34505a0a8e92047e1d89, type: 2}
+    edges:
+      left: 2
+      right: 2
+      top: 2
+      bottom: 2
+  - type: 3
+    tile: {fileID: 11400000, guid: 7b0e5bada8b7640689dd31e2c330f5d6, type: 2}
+    edges:
+      left: 3
+      right: 3
+      top: 3
+      bottom: 3
