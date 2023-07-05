@@ -66,7 +66,7 @@ public class TileMapGenerator : MonoBehaviour
         var matchingConfigs = GetAllMatchingTileTypes(tileEdges);
         if(matchingConfigs.Length == 0)
         {
-            throw new ApplicationException($"No matching tile at position: x->{x} y->{y} types found for edges: {tileEdges.left}, {tileEdges.right}, {tileEdges.top}, {tileEdges.bottom}");
+            throw new ApplicationException($"No matching tile at position: x->{x} y->{y} types found for edges, left:{tileEdges.left}, right:{tileEdges.right}, top:{tileEdges.top}, bottom:{tileEdges.bottom}");
         }
         return matchingConfigs[Random.Range(0, matchingConfigs.Length)];
     }

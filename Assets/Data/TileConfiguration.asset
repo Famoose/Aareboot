@@ -97,3 +97,31 @@ MonoBehaviour:
       right: 3
       top: 3
       bottom: 3
+  - type: 15
+    tile: {fileID: 11400000, guid: e4bd2be104c310e429816316d91ff34e, type: 2}
+    edges:
+      left: 3
+      right: 7
+      top: 3
+      bottom: 4
+  - type: 14
+    tile: {fileID: 11400000, guid: 900299ae4398a414ead680bbe7f34a4b, type: 2}
+    edges:
+      left: 7
+      right: 3
+      top: 3
+      bottom: 5
+  - type: 12
+    tile: {fileID: 11400000, guid: 6e6db72c058956641b913ff1c471ea7f, type: 2}
+    edges:
+      left: 6
+      right: 3
+      top: 5
+      bottom: 3
+  - type: 13
+    tile: {fileID: 11400000, guid: 14eac03b0456b28408abdfa8cc9e1a55, type: 2}
+    edges:
+      left: 3
+      right: 6
+      top: 4
+      bottom: 3
