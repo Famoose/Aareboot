@@ -84,14 +84,14 @@ MonoBehaviour:
       top: 2
       bottom: 2
   - type: 1
-    tile: {fileID: 11400000, guid: 7ad5eff8398e34505a0a8e92047e1d89, type: 2}
+    tile: {fileID: 0}
     edges:
       left: 2
       right: 2
       top: 2
       bottom: 2
   - type: 3
-    tile: {fileID: 11400000, guid: 7b0e5bada8b7640689dd31e2c330f5d6, type: 2}
+    tile: {fileID: 0}
     edges:
       left: 3
       right: 3

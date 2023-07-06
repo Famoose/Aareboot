@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using UnityEngine.Tilemaps;
 
 namespace Structs
@@ -50,7 +51,7 @@ namespace Structs
     public struct TileConfig
     {
         public TileType type;
-        public Tile tile;
+        [CanBeNull] public Tile tile;
         public TileEdges edges;
     }
 

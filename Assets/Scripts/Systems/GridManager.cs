@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Structs;
@@ -16,6 +17,11 @@ public class GridManager : MonoBehaviour
 
     public TileMapGenerator tileMapGenerator;
 
+    // refactor
+    private TileConfig[][][] _tileConfigs = new TileConfig[3][][];
+    private int currentPosition = 0;
+    private Tilemap[] _tilemaps = new Tilemap[3];
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +38,21 @@ public class GridManager : MonoBehaviour
                 tileMapGenerator.tileConfiguration.GetTileConfig(TileType.Floor),
                 tileMapGenerator.tileConfiguration.GetTileConfig(TileType.Floor),
             });
+        
+        _tilemaps = new Tilemap[]{midTilemap, topTilemap, botTilemap};
+        _tileConfigs[currentPosition] = initialTileMap;
+        RenderTileMap();
+        
+        var newMap = tileMapGenerator.CreateTileMap(_tileConfigs[currentPosition][19]);
+        currentPosition = (currentPosition + 1) % 3;
+        _tileConfigs[currentPosition] = newMap;
+        RenderTileMap();
+    }
+
+    private void RenderTileMap()
+    {
+        var initialTileMap = _tileConfigs[currentPosition];
+        var targetTilemap = _tilemaps[currentPosition];
         //set mid tilemap to initial tilemaps generated tiles
         for (int i = 0; i < initialTileMap.Length; i++)
         {
@@ -40,10 +61,10 @@ public class GridManager : MonoBehaviour
                 if (initialTileMap[i][j].type == TileType.Empty || initialTileMap[i][j].type == TileType.Void ||
                     initialTileMap[i][j].type == TileType.Water)
                 {
-                    midTilemap.SetTile(new Vector3Int(j - 5, i -10, 0), null);
+                    targetTilemap.SetTile(new Vector3Int(j - 5, i - 10, 0), null);
                 }
-                
-                midTilemap.SetTile(new Vector3Int(j - 5, i - 10, 0), initialTileMap[i][j].tile);
+
+                targetTilemap.SetTile(new Vector3Int(j - 5, i - 10, 0), initialTileMap[i][j].tile);
             }
         }
     }
@@ -66,6 +87,10 @@ public class GridManager : MonoBehaviour
             top = temp;
             
             //TODO: update bottom tilemap
+            var newMap = tileMapGenerator.CreateTileMap(_tileConfigs[currentPosition][19]);
+            currentPosition = (currentPosition + 1) % 3;
+            _tileConfigs[currentPosition] = newMap;
+            RenderTileMap();
         }
     }
 }
