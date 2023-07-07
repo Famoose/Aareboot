@@ -13,7 +13,7 @@ public class TileMapGenerator : MonoBehaviour
 
     public TileConfiguration tileConfiguration;
 
-    public TileConfig[][] CreateWaterPath(TileConfig[][] grid, TileConfig[] baseLine)
+    private TileConfig[][] CreateWaterPath(TileConfig[][] grid, TileConfig[] baseLine)
     {
         for (var y = 0; y < grid.Length; y++)
         {
@@ -42,6 +42,7 @@ public class TileMapGenerator : MonoBehaviour
                     currentBlockRow[i] = tileConfiguration.GetTileConfig(TileType.Water);
                     continue;
                 }
+
                 //set water tile left, middle or right randomly based on index, or both based on branchPossibility
                 if (i == 1)
                 {
@@ -62,7 +63,7 @@ public class TileMapGenerator : MonoBehaviour
         }
     }
 
-    public TileConfig[][] CreateTileMap(TileConfig[] lastBlockRow)
+    public TileConfig[][] CreateTileMap(TileConfig[] lastBlockRow, bool allWater = false)
     {
         //initialize tilemap[][] with map width and height
         var grid = new TileConfig[MAP_HEIGHT][];
@@ -71,6 +72,23 @@ public class TileMapGenerator : MonoBehaviour
             grid[i] = new TileConfig[MAP_WIDTH];
         }
 
+        if (allWater)
+        {
+            lastBlockRow = new TileConfig[]
+            {
+                tileConfiguration.GetTileConfig(TileType.WaterEdgeLeft),
+                tileConfiguration.GetTileConfig(TileType.Water),
+                tileConfiguration.GetTileConfig(TileType.Water),
+                tileConfiguration.GetTileConfig(TileType.Water),
+                tileConfiguration.GetTileConfig(TileType.Water),
+                tileConfiguration.GetTileConfig(TileType.Water),
+                tileConfiguration.GetTileConfig(TileType.Water),
+                tileConfiguration.GetTileConfig(TileType.Water),
+                tileConfiguration.GetTileConfig(TileType.Water),
+                tileConfiguration.GetTileConfig(TileType.WaterEdgeRight),
+            };
+        }
+        
         grid = CreateWaterPath(grid, lastBlockRow);
 
         bool blockLeft = true;
@@ -82,7 +100,7 @@ public class TileMapGenerator : MonoBehaviour
             var tileWithLowestNeighbours = GetTileWithHighestNeighbours(grid, lastBlockRow);
             if (tileWithLowestNeighbours.HasValue)
             {
-                var newTile = GetRandomTileFromTileEdges(tileWithLowestNeighbours.Value);
+                var newTile = GetRandomTileFromTileEdges(tileWithLowestNeighbours.Value, allWater);
                 grid[tileWithLowestNeighbours.Value.coords.y][tileWithLowestNeighbours.Value.coords.x] = newTile;
             }
             else
@@ -170,13 +188,23 @@ public class TileMapGenerator : MonoBehaviour
         return neighboursResult;
     }
 
-    private TileConfig GetRandomTileFromTileEdges(NeighbourResult result)
+    private TileConfig GetRandomTileFromTileEdges(NeighbourResult result, bool prefWater = false)
     {
         var matchingConfigs = GetAllMatchingTileTypes(result.edges);
         if (matchingConfigs.Length == 0)
         {
             throw new ApplicationException(
                 $"No matching tile at position: x->{result.coords.x} y->{result.coords.y} types found for edges, left:{result.edges.left}, right:{result.edges.right}, top:{result.edges.top}, bottom:{result.edges.bottom}");
+        }
+        
+        //PrefAllWater
+        if (prefWater)
+        {
+            int waterIndex = Array.FindIndex(matchingConfigs, config => config.type == TileType.Water);
+            if (waterIndex > -1)
+            {
+                return matchingConfigs[waterIndex];
+            }
         }
 
         int floorIndex = Array.FindIndex(matchingConfigs, config => config.type == TileType.Floor);
