@@ -23,6 +23,8 @@ public class GridManager : MonoBehaviour
     private int currentPosition = 0;
     private Tilemap[] _tilemaps = new Tilemap[3];
 
+    public bool gameRunning;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +59,7 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!gameRunning) return;
         var transform = new Vector3(0, speed * Time.deltaTime * -1, 0);
         top.transform.position += transform;
         mid.transform.position += transform;

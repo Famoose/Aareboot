@@ -214,6 +214,20 @@ public class TileMapGenerator : MonoBehaviour
         {
             return matchingConfigs[floorIndex];
         }
+        
+        //prefere edge top left
+        int topLeftIndex = Array.FindIndex(matchingConfigs, config => config.type == TileType.WaterEdgeTopLeft);
+        if (topLeftIndex > -1)
+        {
+            return matchingConfigs[topLeftIndex];
+        }
+        
+        //prefere edge top right
+        int topRightIndex = Array.FindIndex(matchingConfigs, config => config.type == TileType.WaterEdgeTopRight);
+        if (topRightIndex > -1)
+        {
+            return matchingConfigs[topRightIndex];
+        }
 
         //prefere edge left
         int rightIndex = Array.FindIndex(matchingConfigs, config => config.type == TileType.WaterEdgeLeft);

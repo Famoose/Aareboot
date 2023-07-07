@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d251f541d35a4057b2615cc16846724
+guid: 112d0885e35764353a8e11d4f7bf6f16
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638243724267747560
+  platformSettingsDirtyTick: 638243724184523300
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: birdy_Frame_0
+  - name: boat
     originalName: 
-    pivot: {x: 0.53846157, y: -0.3}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 13
-      height: 10
-    spriteID: d29d3941dd6d143be9d9323d975c9c07
+      width: 12
+      height: 16
+    spriteID: 9937a100668fd4da88eecafe5ccf5bc0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,79 +139,23 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: birdy_Frame_1
-    originalName: 
-    pivot: {x: 0.5, y: -0.44444445}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 22
-      width: 12
-      height: 9
-    spriteID: e5ea61cc435374fceb48b4f53b3e4458
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 22}
-  - name: birdy_Frame_2
-    originalName: 
-    pivot: {x: 0.45454547, y: -0.44444445}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 39
-      width: 11
-      height: 9
-    spriteID: 7cb1d08b9f5b74fbdaee696eaf6edd67
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 39}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 725018564
-    name: birdy
+    guid: 470421836
+    name: boat
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: birdy_Frame_0
+    - name: boat
       frameIndex: 0
       cellRect:
-        x: 1
-        y: 3
-        width: 13
-        height: 10
-      spriteId: d29d3941dd6d143be9d9323d975c9c07
-    - name: birdy_Frame_1
-      frameIndex: 1
-      cellRect:
         x: 2
-        y: 4
+        y: 0
         width: 12
-        height: 9
-      spriteId: e5ea61cc435374fceb48b4f53b3e4458
-    - name: birdy_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 3
-        y: 4
-        width: 11
-        height: 9
-      spriteId: 7cb1d08b9f5b74fbdaee696eaf6edd67
+        height: 16
+      spriteId: 9937a100668fd4da88eecafe5ccf5bc0
     linkedCells: []
     parentIndex: -1
   platformSettings:
