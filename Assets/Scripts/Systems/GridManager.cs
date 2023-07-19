@@ -5,9 +5,11 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Unity.Jobs;
+using Unity.Mathematics;
 
 public class GridManager : MonoBehaviour
 {
+    private float SUB_PIXEL_MOVEMENT = 0.0625f;
     public float speed = 1.0f;
     public GameObject top;
     public Tilemap topTilemap;
@@ -24,11 +26,13 @@ public class GridManager : MonoBehaviour
     private Tilemap[] _tilemaps = new Tilemap[3];
 
     public bool gameRunning;
-    
+
+    private float summedDelta;
+
     // Start is called before the first frame update
     void Start()
     {
-        _tilemaps = new Tilemap[]{midTilemap, topTilemap, botTilemap};
+        _tilemaps = new Tilemap[] { midTilemap, topTilemap, botTilemap };
         var initialTileMap = tileMapGenerator.CreateTileMap(null, true);
         _tileConfigs[currentPosition] = initialTileMap;
         RenderTileMap();
@@ -59,8 +63,18 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!gameRunning) return;
-        var transform = new Vector3(0, speed * Time.deltaTime * -1, 0);
+        if (!gameRunning) return;
+        var delta = (speed * Time.deltaTime);
+        summedDelta += delta;
+        var allignedDelta = 0f;
+        if (summedDelta < SUB_PIXEL_MOVEMENT)
+        {
+            return;
+        }
+        
+        allignedDelta = summedDelta - summedDelta % SUB_PIXEL_MOVEMENT;
+        summedDelta %= SUB_PIXEL_MOVEMENT;
+        var transform = new Vector3(0, -allignedDelta, 0);
         top.transform.position += transform;
         mid.transform.position += transform;
         bot.transform.position += transform;
@@ -77,7 +91,7 @@ public class GridManager : MonoBehaviour
             StartCoroutine(CalcNewGrid());
         }
     }
-    
+
     IEnumerator CalcNewGrid()
     {
         var maxItr = 10;
@@ -98,8 +112,8 @@ public class GridManager : MonoBehaviour
             {
                 Debug.LogWarning(e);
             }
-
         }
+
         yield return null;
     }
 }
